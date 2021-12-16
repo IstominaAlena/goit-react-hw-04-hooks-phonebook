@@ -27,13 +27,8 @@ const App = () => {
 
   function addContactHandler({ name, number }) {
     const lowerCaseName = name.toLowerCase();
-    const contact = {
-      name,
-      number,
-      id: nanoid(),
-    };
 
-    const findInArray = this.state.contacts.find(({ name }) => {
+    const findInArray = contacts.find(({ name }) => {
       const lowerCaseStateName = name.toLowerCase();
       return lowerCaseStateName === lowerCaseName;
     });
@@ -41,6 +36,12 @@ const App = () => {
     if (findInArray) {
       return alert(`${name} is already in your contacts!`);
     }
+
+    const contact = {
+      name,
+      number,
+      id: nanoid(),
+    };
 
     setContacts(contacts => [...contacts, contact]);
   }
