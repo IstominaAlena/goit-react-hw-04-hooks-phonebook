@@ -1,0 +1,45 @@
+.contactList {
+  width: 100%;
+}
+
+.contactItem {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-family: 'Marck Script', cursive;
+
+  background-color: rgb(236, 226, 226);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.contactItem:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.contactImg {
+  border-radius: 50% 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .contactList {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    justify-content: center;
+  }
+  .contactItem:nth-last-child(-n + 2) {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .contactList {
+    grid-template-columns: 300px 300px 300px;
+  }
+}

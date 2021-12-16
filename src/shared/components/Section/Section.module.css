@@ -1,0 +1,93 @@
+.contacts,
+.phonebook {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.title {
+  margin-bottom: 30px;
+
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.18;
+  text-align: left;
+  color: rgb(136, 119, 181);
+}
+
+.title::after {
+  position: absolute;
+  content: '';
+  top: 35px;
+  left: 15px;
+  width: 135px;
+  height: 4px;
+
+  border-radius: 2px;
+  background-color: rgb(136, 119, 181);
+}
+
+.contacts .title {
+  text-align: center;
+}
+
+.contacts .title::after {
+  left: 34%;
+  max-width: 33%;
+}
+
+@media screen and (min-width: 480px) {
+  .container {
+    width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contacts .title::after {
+    left: 200px;
+    width: 115px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+
+  .forChildrens {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .title::after {
+    left: 333px;
+  }
+
+  .contacts .title::after {
+    left: 345px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 900px;
+  }
+  .title::after {
+    left: 400px;
+  }
+
+  .contacts .title::after {
+    left: 409px;
+  }
+}
