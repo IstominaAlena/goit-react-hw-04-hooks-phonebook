@@ -8,22 +8,18 @@ import Button from '../../shared/components/Button';
 import styles from './FormContacts.module.css';
 
 const FormContacts = props => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [state, setState] = useState({
+    name: '',
+    number: '',
+  });
+  const { name, number } = state;
 
   function handleInputChange(e) {
     const { name, value } = e.target;
-
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
+    setState({
+      ...state,
+      [name]: value,
+    });
   }
 
   const contact = {
@@ -38,8 +34,10 @@ const FormContacts = props => {
   }
 
   function resetForm() {
-    setName('');
-    setNumber('');
+    setState({
+      name: '',
+      number: '',
+    });
   }
 
   return (

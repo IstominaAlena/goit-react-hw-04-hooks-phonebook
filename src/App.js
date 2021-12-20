@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { nanoid } from 'nanoid';
 
 import Section from './shared/components/Section';
@@ -7,13 +6,32 @@ import FormContacts from './components/FormContacts';
 import Input from './shared/components/Input';
 import ContactList from './components/ContactList';
 
-import useLocalStorage from './hooks/useLocalStorage';
+// import useLocalStorage from './hooks/useLocalStorage';
 
 import './styles/App.css';
 
 const App = () => {
-  const [contacts, setContacts] = useLocalStorage('contacts', []);
+  const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    const contactsList = JSON.parse(localStorage.getItem('contacts'));
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      if (!Array.isArray(contactsList)) {
+        return;
+      }
+      if (contactsList.length) {
+        setContacts(contactsList);
+      }
+      return;
+    }
+    if (contactsList.length !== contacts.length) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }, [contacts]);
 
   function checkContactHandler({ name, number }) {
     if (!name) {
@@ -46,12 +64,15 @@ const App = () => {
     setContacts(contacts => [...contacts, contact]);
   }
 
-  function deleteContactHandler(id) {
-    setContacts(contacts => contacts.filter(contact => contact.id !== id));
-  }
+  const deleteContactHandler = useCallback(
+    id => {
+      setContacts(contacts => contacts.filter(contact => contact.id !== id));
+    },
+    [setContacts]
+  );
 
   function filterChangeHandler(e) {
-    const { value } = e.currentTarget;
+    const { value } = e.target;
     setFilter(value);
   }
 

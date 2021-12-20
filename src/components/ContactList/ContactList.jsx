@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 import toonavatar from 'cartoon-avatar';
 import styles from './ContactList.module.css';
@@ -27,7 +28,7 @@ const ContactList = ({ contacts, onDeleteItem }) => {
   );
 };
 
-export default ContactList;
+export default memo(ContactList);
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
